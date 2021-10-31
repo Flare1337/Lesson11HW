@@ -17,5 +17,6 @@ public class DelegatingStudentPrinter implements IStudentPrinter {
                 }
             }
         };
+        studentPrinter.print(student);
     }
 }

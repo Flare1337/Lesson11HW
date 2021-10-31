@@ -83,22 +83,16 @@ public class Student {
             }
         }
     }
-    public static Comparator <Student> anonymousComparatorOne(){
+    public static Comparator <Student> anonymousComparatorOne() {
         Comparator<Student> comparatorOne = new Comparator<>() {
             @Override
             public int compare(Student firstStudent, Student secondStudent) {
-                return (firstStudent.getName().compareTo(secondStudent.getName()));
+                return firstStudent.getName().compareTo(secondStudent.getName());
             }
         };
         return comparatorOne;
     }
 
-    Comparator<Student> comparatorOne = new Comparator<>() {
-        @Override
-        public int compare(Student firstStudent, Student secondStudent) {
-            return (firstStudent.getName().compareTo(secondStudent.getName()));
-        }
-    };
     public static Comparator<Student> anonymousComparatorTwo() {
         Comparator<Student> comparatorTwo = new Comparator<>() {
             @Override

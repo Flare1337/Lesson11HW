@@ -15,5 +15,6 @@ public class StudentToStringPrinter implements IStudentPrinter {
                 student.toString();
             }
         };
+        studentPrinter.print(student);
     }
 }

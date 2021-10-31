@@ -3,7 +3,6 @@ package com.company;
 import java.time.LocalDateTime;
 
 public class Main {
-
     public static void main(String[] args) throws InterruptedException {
         RandomGenerator rg = new RandomGenerator();
         Mother mother = new Mother();

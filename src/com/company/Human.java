@@ -116,6 +116,41 @@ public class Human {
         }
         Thread.sleep(500);
     }
+    public static class KindergartenParams {
+        private boolean isLocalEstablishment;
+        private boolean isLuxuriousKindergarten;
+        private boolean isChildHappy;
+
+        public KindergartenParams(boolean isLocalEstablishment, boolean isLuxuriousKindergarten, boolean isChildHappy) {
+            this.isLocalEstablishment = isLocalEstablishment;
+            this.isLuxuriousKindergarten = isLuxuriousKindergarten;
+            this.isChildHappy = isChildHappy;
+        }
+
+        public boolean isLocalEstablishment() {
+            return isLocalEstablishment;
+        }
+
+        public void setLocalEstablishment(boolean localEstablishment) {
+            isLocalEstablishment = localEstablishment;
+        }
+
+        public boolean isLuxuriousKindergarten() {
+            return isLuxuriousKindergarten;
+        }
+
+        public void setLuxuriousKindergarten(boolean luxuriousKindergarten) {
+            isLuxuriousKindergarten = luxuriousKindergarten;
+        }
+
+        public boolean isChildHappy() {
+            return isChildHappy;
+        }
+
+        public void setChildHappy(boolean childHappy) {
+            isChildHappy = childHappy;
+        }
+    }
 
     public void beginSchoolStage(int amountOfMinutesToGetToSchool, boolean isSecondarySchoolOfMathematics, int averageMark) throws InterruptedException {
         System.out.println("3. School ");

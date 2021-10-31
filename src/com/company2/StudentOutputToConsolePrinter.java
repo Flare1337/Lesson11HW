@@ -15,5 +15,6 @@ public class StudentOutputToConsolePrinter implements IStudentPrinter {
                 System.out.println(student.toString());
             }
         };
+        studentPrinter.print(student);
     }
 }

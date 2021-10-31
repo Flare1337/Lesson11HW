@@ -27,6 +27,8 @@ public class Main {
         System.out.println(result5);
         var result6 = Student.anonymousComparatorThree().compare(student1, student2);
         System.out.println(result6);
+
+
     }
     private void processTheTaskData() {
         Student student = new Student("Josh",12, new BigDecimal("23.5"));
