@@ -1,6 +1,7 @@
 package com.company2;
 
 import java.math.BigDecimal;
+import java.util.Comparator;
 
 public class Student {
     private String name;
@@ -40,5 +41,38 @@ public class Student {
     @Override
     public String toString() {
         return String.format("name=%s\nage=%d\nsalary=%f ", name, age, salary);
+    }
+
+    public static Comparator<Student> getComparatorByName() {
+        return new ComparatorByName();
+    }
+
+    public static Comparator<Student> getComparatorByAge() {
+        return new ComparatorByAge();
+    }
+
+    public static Comparator<Student> getComparatorByNameAndAge() {
+        return new ComparatorByNameAndAge();
+    }
+
+    public static class ComparatorByName implements Comparator<Student>{
+        @Override
+        public int compare(Student firstStudent, Student secondStudent) {
+            return firstStudent.getName().compareTo(secondStudent.getName());
+        }
+    }
+
+    public static class ComparatorByAge implements Comparator<Student> {
+        @Override
+        public int compare(Student firstStudent, Student secondStudent) {
+            return firstStudent.getName().compareTo(secondStudent.getName());
+        }
+    }
+
+    public static class ComparatorByNameAndAge implements Comparator<Student> {
+        @Override
+        public int compare(Student o1, Student o2) {
+            return 0;
+        }
     }
 }
