@@ -83,4 +83,47 @@ public class Student {
             }
         }
     }
+    public static Comparator <Student> anonymousComparatorOne(){
+        Comparator<Student> comparatorOne = new Comparator<>() {
+            @Override
+            public int compare(Student firstStudent, Student secondStudent) {
+                return (firstStudent.getName().compareTo(secondStudent.getName()));
+            }
+        };
+        return comparatorOne;
+    }
+
+    Comparator<Student> comparatorOne = new Comparator<>() {
+        @Override
+        public int compare(Student firstStudent, Student secondStudent) {
+            return (firstStudent.getName().compareTo(secondStudent.getName()));
+        }
+    };
+    public static Comparator<Student> anonymousComparatorTwo() {
+        Comparator<Student> comparatorTwo = new Comparator<>() {
+            @Override
+            public int compare(Student firstStudent, Student secondStudent) {
+                return Integer.compare(firstStudent.getAge(), secondStudent.getAge());
+            }
+        };
+        return comparatorTwo;
+    }
+
+    public static Comparator<Student> anonymousComparatorThree() {
+        Comparator<Student> comparatorThree = new Comparator<>() {
+            @Override
+            public int compare(Student firstStudent, Student secondStudent) {
+                if (firstStudent.getName().compareTo(secondStudent.getName()) != 0) {
+                    return Integer.compare(firstStudent.getAge(), (secondStudent.getAge()));
+                }
+                else if (firstStudent.getName().compareTo(secondStudent.getName()) < 0) {
+                    return -1;
+                }
+                else {
+                    return 1;
+                }
+            }
+        };
+        return comparatorThree;
+    }
 }

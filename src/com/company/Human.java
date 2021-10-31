@@ -3,6 +3,7 @@ package com.company;
 import java.time.LocalDateTime;
 
 public class Human {
+    RandomGenerator rg = new RandomGenerator();
     public static final int HIGH_SALARY = 4000;
     public static final int A_LOT_INTERVIEWS = 5;
     public static final int FAR_FROM_HOME = 30;
@@ -69,7 +70,7 @@ public class Human {
 
     private int ageInYears;
 
-    public Human(LocalDateTime birthTime, boolean gender, float weight, int height, boolean location, int ageInYears) {
+    public Human(LocalDateTime birthTime, boolean gender, float weight, int height, boolean location, int ageInYears) throws InterruptedException {
         this.birthTime = birthTime;
         this.gender = gender;
         this.weight = weight;
@@ -88,6 +89,18 @@ public class Human {
         observer.onBirth(birthTime,gender, weight, height, location, ageInYears);
         System.out.println("*Baby cries*");
         Thread.sleep(500);
+        goToKindergarten(rg.getRandomBoolean(), rg.getRandomBoolean(), rg.getRandomBoolean());
+        beginSchoolStage(rg.getRandomMinutes(), rg.getRandomBoolean(), rg.getRandomAverageMark());
+        enrollUniversity("New York University",
+          "Understanding International Business and Finance", rg.getRandomBoolean(), rg.getRandomBoolean());
+        findJob(rg.getRandomSalary(), rg.getRandomAmountOfInterviews(), rg.getRandomMinutes());
+        findTheOne(rg.getRandomBoolean(), rg.getRandomBoolean(), rg.getRandomAge());
+        makeBabies(rg.getRandomAmountOfBabies(), rg.getRandomBoolean());
+        studySomeJava(rg.getRandomCourseCost(), rg.getRandomBoolean(), rg.getRandomAmountOfMoths());
+        runStartUp(rg.getRandomBoolean(), rg.getRandomBoolean(),
+          "Healthcare", "PositiveTech");
+        sellStartUp(rg.getRandomStartUpPrice(), rg.getRandomBoolean(), rg.getRandomBoolean());
+        die(rg.getRandomBoolean(), rg.getRandomBoolean(), "New York", rg.getRandomAmountOfPeople());
     }
 
     public void goToKindergarten(boolean isLocalEstablishment, boolean isLuxuriousKindergarten, boolean isChildHappy) throws InterruptedException {

@@ -21,57 +21,12 @@ public class Main {
         System.out.println(result2);
         System.out.println(result3);
 
-        Comparator<Student> comparatorOne = new Comparator<>() {
-            @Override
-            public int compare(Student firstStudent, Student secondStudent) {
-                return (firstStudent.getName().compareTo(secondStudent.getName()));
-            }
-        };
-        var result4 = comparatorOne.compare(student1, student2);
+        var result4 = Student.anonymousComparatorOne().compare(student1, student2);
         System.out.println(result4);
-        Comparator<Student> comparatorTwo = new Comparator<>() {
-            @Override
-            public int compare(Student firstStudent, Student secondStudent) {
-                return Integer.compare(firstStudent.getAge(), secondStudent.getAge());
-            }
-        };
-        var result5 = comparatorTwo.compare(student1, student2);
+        var result5 = Student.anonymousComparatorTwo().compare(student1, student2);
         System.out.println(result5);
-        Comparator<Student> comparatorThree = new Comparator<>() {
-            @Override
-            public int compare(Student firstStudent, Student secondStudent) {
-                if (firstStudent.getName().compareTo(secondStudent.getName()) != 0) {
-                    return Integer.compare(firstStudent.getAge(), (secondStudent.getAge()));
-                }
-                else if (firstStudent.getName().compareTo(secondStudent.getName()) < 0) {
-                    return -1;
-                }
-                else {
-                    return 1;
-                }
-            }
-        };
-        var result6 = comparatorThree.compare(student1, student2);
+        var result6 = Student.anonymousComparatorThree().compare(student1, student2);
         System.out.println(result6);
-
-        IStudentStringConverter studentStringConverter = new IStudentStringConverter() {
-            @Override
-            public String convert(Student student) {
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append("name=").append(student.getName()).append("\n");
-                stringBuilder.append("age=").append(student.getAge()).append("\n");
-                stringBuilder.append("salary=").append(student.getSalary()).append("\n");
-                return stringBuilder.toString();
-            }
-        };
-        IStudentPrinter studentPrinter = new IStudentPrinter() {
-            @Override
-            public void print(Student student) {
-                System.out.println(student.toString());
-            }
-        };
-        System.out.println(studentStringConverter.convert(student1));
-        studentPrinter.print(student1);
     }
     private void processTheTaskData() {
         Student student = new Student("Josh",12, new BigDecimal("23.5"));

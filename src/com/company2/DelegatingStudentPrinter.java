@@ -9,9 +9,13 @@ public class DelegatingStudentPrinter implements IStudentPrinter {
 
     @Override
     public void print(Student student) {
-        // Превращаю в строки, немного ленивым путем
-        for (IStudentPrinter printer : printers) {
-            printer.print(student);
-        }
+        IStudentPrinter studentPrinter = new IStudentPrinter() {
+            @Override
+            public void print(Student student) {
+                for (IStudentPrinter printer : printers) {
+                    printer.print(student);
+                }
+            }
+        };
     }
 }

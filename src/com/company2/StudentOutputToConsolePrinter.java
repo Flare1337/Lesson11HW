@@ -9,6 +9,11 @@ public class StudentOutputToConsolePrinter implements IStudentPrinter {
 
     @Override
     public void print(Student student) {
-        System.out.println(converter.convert(student).toString());
+        IStudentPrinter studentPrinter = new IStudentPrinter() {
+            @Override
+            public void print(Student student) {
+                System.out.println(student.toString());
+            }
+        };
     }
 }
