@@ -55,7 +55,7 @@ public class Student {
         return new ComparatorByNameAndAge();
     }
 
-    public static class ComparatorByName implements Comparator<Student>{
+    public static class ComparatorByName implements Comparator<Student> {
         @Override
         public int compare(Student firstStudent, Student secondStudent) {
             return firstStudent.getName().compareTo(secondStudent.getName());
@@ -65,14 +65,22 @@ public class Student {
     public static class ComparatorByAge implements Comparator<Student> {
         @Override
         public int compare(Student firstStudent, Student secondStudent) {
-            return firstStudent.getName().compareTo(secondStudent.getName());
+            return Integer.compare(firstStudent.getAge(), (secondStudent.getAge()));
         }
     }
 
     public static class ComparatorByNameAndAge implements Comparator<Student> {
         @Override
-        public int compare(Student o1, Student o2) {
-            return 0;
+        public int compare(Student firstStudent, Student secondStudent) {
+            if (firstStudent.getName().compareTo(secondStudent.getName()) != 0) {
+                return Integer.compare(firstStudent.getAge(), (secondStudent.getAge()));
+            }
+            else if (firstStudent.getName().compareTo(secondStudent.getName()) < 0) {
+                return -1;
+            }
+            else {
+                return 1;
+            }
         }
     }
 }

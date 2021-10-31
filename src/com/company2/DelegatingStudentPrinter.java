@@ -10,14 +10,8 @@ public class DelegatingStudentPrinter implements IStudentPrinter {
     @Override
     public void print(Student student) {
         // Превращаю в строки, немного ленивым путем
-        String stringStudent = student.toString();
         for (IStudentPrinter printer : printers) {
-            printer.print(stringStudent);
+            printer.print(student);
         }
-    }
-
-    @Override
-    public void print(String student) {
-
     }
 }

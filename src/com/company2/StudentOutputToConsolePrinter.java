@@ -11,9 +11,4 @@ public class StudentOutputToConsolePrinter implements IStudentPrinter {
     public void print(Student student) {
         System.out.println(converter.convert(student).toString());
     }
-
-    @Override
-    public void print(String student) {
-        System.out.println("OutputToConsole! " + student);
-    }
 }

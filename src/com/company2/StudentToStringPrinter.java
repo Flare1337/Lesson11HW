@@ -14,8 +14,4 @@ public class StudentToStringPrinter implements IStudentPrinter {
         converter.convert(student);
     }
 
-    @Override
-    public void print(String student) {
-        System.out.println("Whatever you give me I won't display on console >:) 'Cause I'm just a \"toStringPrinter\"");
-    }
 }
