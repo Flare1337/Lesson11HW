@@ -89,26 +89,26 @@ public class Human {
         observer.onBirth(birthTime,gender, weight, height, location, ageInYears);
         System.out.println("*Baby cries*");
         Thread.sleep(500);
-        goToKindergarten(rg.getRandomBoolean(), rg.getRandomBoolean(), rg.getRandomBoolean());
-        beginSchoolStage(rg.getRandomMinutes(), rg.getRandomBoolean(), rg.getRandomAverageMark());
-        enrollUniversity("New York University",
-          "Understanding International Business and Finance", rg.getRandomBoolean(), rg.getRandomBoolean());
-        findJob(rg.getRandomSalary(), rg.getRandomAmountOfInterviews(), rg.getRandomMinutes());
-        findTheOne(rg.getRandomBoolean(), rg.getRandomBoolean(), rg.getRandomAge());
-        makeBabies(rg.getRandomAmountOfBabies(), rg.getRandomBoolean());
-        studySomeJava(rg.getRandomCourseCost(), rg.getRandomBoolean(), rg.getRandomAmountOfMoths());
-        runStartUp(rg.getRandomBoolean(), rg.getRandomBoolean(),
-          "Healthcare", "PositiveTech");
-        sellStartUp(rg.getRandomStartUpPrice(), rg.getRandomBoolean(), rg.getRandomBoolean());
-        die(rg.getRandomBoolean(), rg.getRandomBoolean(), "New York", rg.getRandomAmountOfPeople());
+        goToKindergarten(new KindergartenParams(rg.getRandomBoolean(), rg.getRandomBoolean(), rg.getRandomBoolean()));
+        beginSchoolStage(new SchoolStage(rg.getRandomMinutes(), rg.getRandomBoolean(), rg.getRandomAverageMark()));
+        enrollUniversity(new UniversityStage("New York University",
+          "Understanding International Business and Finance", rg.getRandomBoolean(), rg.getRandomBoolean()));
+        findJob(new JobStage( rg.getRandomSalary(), rg.getRandomAmountOfInterviews(), rg.getRandomMinutes()));
+        findTheOne(new FindingWifeStage(rg.getRandomBoolean(), rg.getRandomBoolean(), rg.getRandomAge()));
+        makeBabies(new BabiesStage(rg.getRandomAmountOfBabies(), rg.getRandomBoolean()));
+        studySomeJava(new JavaLearnStage(rg.getRandomCourseCost(), rg.getRandomBoolean(), rg.getRandomAmountOfMoths()));
+        runStartUp(new StartUpStage(rg.getRandomBoolean(), rg.getRandomBoolean(),
+          "Healthcare", "PositiveTech"));
+        sellStartUp(new SellStartUpStage(rg.getRandomStartUpPrice(), rg.getRandomBoolean(), rg.getRandomBoolean()));
+        die(new DeathStage(rg.getRandomBoolean(), rg.getRandomBoolean(), "New York", rg.getRandomAmountOfPeople()));
     }
 
-    public void goToKindergarten(boolean isLocalEstablishment, boolean isLuxuriousKindergarten, boolean isChildHappy) throws InterruptedException {
+    public void goToKindergarten(KindergartenParams params) throws InterruptedException {
         System.out.println("2. A kindergarten moment");
         Thread.sleep(2000);
-        observer.onKindergarten(isLocalEstablishment, isLuxuriousKindergarten, isChildHappy);
+        observer.onKindergarten(params.isLocalEstablishment, params.isLuxuriousKindergarten, params.isChildHappy);
         Thread.sleep(1000);
-        if (isLuxuriousKindergarten) {
+        if (params.isLuxuriousKindergarten) {
             System.out.println("Kid: Mommy I want this, and this one too!");
         }
         else {
@@ -116,47 +116,25 @@ public class Human {
         }
         Thread.sleep(500);
     }
+
     public static class KindergartenParams {
-        private boolean isLocalEstablishment;
-        private boolean isLuxuriousKindergarten;
-        private boolean isChildHappy;
+        boolean isLocalEstablishment;
+        boolean isLuxuriousKindergarten;
+        boolean isChildHappy;
 
         public KindergartenParams(boolean isLocalEstablishment, boolean isLuxuriousKindergarten, boolean isChildHappy) {
             this.isLocalEstablishment = isLocalEstablishment;
             this.isLuxuriousKindergarten = isLuxuriousKindergarten;
             this.isChildHappy = isChildHappy;
         }
-
-        public boolean isLocalEstablishment() {
-            return isLocalEstablishment;
-        }
-
-        public void setLocalEstablishment(boolean localEstablishment) {
-            isLocalEstablishment = localEstablishment;
-        }
-
-        public boolean isLuxuriousKindergarten() {
-            return isLuxuriousKindergarten;
-        }
-
-        public void setLuxuriousKindergarten(boolean luxuriousKindergarten) {
-            isLuxuriousKindergarten = luxuriousKindergarten;
-        }
-
-        public boolean isChildHappy() {
-            return isChildHappy;
-        }
-
-        public void setChildHappy(boolean childHappy) {
-            isChildHappy = childHappy;
-        }
     }
 
-    public void beginSchoolStage(int amountOfMinutesToGetToSchool, boolean isSecondarySchoolOfMathematics, int averageMark) throws InterruptedException {
+    public void beginSchoolStage(SchoolStage schoolStage) throws InterruptedException {
         System.out.println("3. School ");
         Thread.sleep(2000);
-        observer.onSchool(amountOfMinutesToGetToSchool, isSecondarySchoolOfMathematics, averageMark);
-        if (averageMark > 3) {
+        observer.onSchool(schoolStage.amountOfMinutesToGetToSchool, schoolStage.isSecondarySchoolOfMathematics,
+                schoolStage.averageMark);
+        if (schoolStage.averageMark > 3) {
             System.out.println("Teen: It wasn't hard, huh");
         }
         else {
@@ -164,11 +142,25 @@ public class Human {
         }
         Thread.sleep(500);
     }
-    public void enrollUniversity(String establishmentName, String specialization, boolean isFreeEducation, boolean isWorkWhileStudy) throws InterruptedException {
+
+    public static class SchoolStage {
+        int amountOfMinutesToGetToSchool;
+        boolean isSecondarySchoolOfMathematics;
+        int averageMark;
+
+        public SchoolStage(int amountOfMinutesToGetToSchool, boolean isSecondarySchoolOfMathematics, int averageMark) {
+            this.amountOfMinutesToGetToSchool = amountOfMinutesToGetToSchool;
+            this.isSecondarySchoolOfMathematics = isSecondarySchoolOfMathematics;
+            this.averageMark = averageMark;
+        }
+    }
+
+    public void enrollUniversity(UniversityStage universityStage) throws InterruptedException {
         System.out.println("4. University stage");
         Thread.sleep(2000);
-        observer.onUniversity(establishmentName, specialization, isFreeEducation, isWorkWhileStudy);
-        if (isFreeEducation) {
+        observer.onUniversity(universityStage.establishmentName, universityStage.specialization,
+                universityStage.isFreeEducation, universityStage.isWorkWhileStudy);
+        if (universityStage.isFreeEducation) {
             System.out.println("Student: I was preparing hard to get free education");
         }
         else {
@@ -177,25 +169,39 @@ public class Human {
         Thread.sleep(500);
     }
 
-    public void findJob(double salary, int amountOfInterviews, int timeInMinutesFromWorkplace) throws InterruptedException {
+    public static class UniversityStage {
+        String establishmentName;
+        String specialization;
+        boolean isFreeEducation;
+        boolean isWorkWhileStudy;
+
+        public UniversityStage(String establishmentName, String specialization, boolean isFreeEducation, boolean isWorkWhileStudy) {
+            this.establishmentName = establishmentName;
+            this.specialization = specialization;
+            this.isFreeEducation = isFreeEducation;
+            this.isWorkWhileStudy = isWorkWhileStudy;
+        }
+    }
+
+    public void findJob(JobStage jobStage) throws InterruptedException {
         System.out.println("5. First job");
         Thread.sleep(2000);
-        observer.onFindingJob(salary, amountOfInterviews, timeInMinutesFromWorkplace);
-        if (salary > HIGH_SALARY) {
+        observer.onFindingJob(jobStage.salary, jobStage.amountOfInterviews, jobStage.timeInMinutesFromWorkplace);
+        if (jobStage.salary > HIGH_SALARY) {
             System.out.println("Employee: Oho, study at the university wasn't in vain! The position is a fire");
         }
         else {
             System.out.println("Employee: Welp, I need more experience to get a high-paid job");
         }
         Thread.sleep(1000);
-        if (amountOfInterviews < A_LOT_INTERVIEWS) {
+        if (jobStage.amountOfInterviews < A_LOT_INTERVIEWS) {
             System.out.println("Employee: It wasn't hard to find this one");
         }
         else {
             System.out.println("Employee: A First job isn't easy to find due to lack of experience ");
         }
         Thread.sleep(1000);
-        if (timeInMinutesFromWorkplace < FAR_FROM_HOME) {
+        if (jobStage.timeInMinutesFromWorkplace < FAR_FROM_HOME) {
             System.out.println("Employee: And it's near my house, so convenient");
         }
         else {
@@ -204,25 +210,37 @@ public class Human {
         Thread.sleep(500);
     }
 
-    public void findTheOne(boolean isMotherLikes, boolean isRich, int herAge) throws InterruptedException {
+    public static class JobStage {
+        double salary;
+        int amountOfInterviews;
+        int timeInMinutesFromWorkplace;
+
+        public JobStage(double salary, int amountOfInterviews, int timeInMinutesFromWorkplace) {
+            this.salary = salary;
+            this.amountOfInterviews = amountOfInterviews;
+            this.timeInMinutesFromWorkplace = timeInMinutesFromWorkplace;
+        }
+    }
+
+    public void findTheOne(FindingWifeStage stage) throws InterruptedException {
         System.out.println("6. The beloved one");
         Thread.sleep(2000);
-        observer.onSeekingForWife(isMotherLikes, isRich, herAge);
-        if (isMotherLikes) {
+        observer.onSeekingForWife(stage.isMotherLikes, stage.isRich, stage.herAge);
+        if (stage.isMotherLikes) {
             System.out.println("Future husband: As I said before, she's the one!");
         }
         else  {
             System.out.println("Future husband: You'll see, she's a beautiful person.");
         }
         Thread.sleep(1500);
-        if (isRich) {
+        if (stage.isRich) {
             System.out.println("Future husband: I know what are you talking about.");
         }
         else {
             System.out.println("Future husband: We are in the same situation so that's fine.");
         }
         Thread.sleep(1500);
-        if (herAge <= Human.YOUNG_AGE) {
+        if (stage.herAge <= Human.YOUNG_AGE) {
             System.out.println("Future husband: Yes, she is.");
         }
         else {
@@ -231,18 +249,30 @@ public class Human {
         Thread.sleep(500);
     }
 
-    public void makeBabies(int kidsQuantity, boolean gender) throws InterruptedException {
+    public static class FindingWifeStage {
+        boolean isMotherLikes;
+        boolean isRich;
+        int herAge;
+
+        public FindingWifeStage(boolean isMotherLikes, boolean isRich, int herAge) {
+            this.isMotherLikes = isMotherLikes;
+            this.isRich = isRich;
+            this.herAge = herAge;
+        }
+    }
+
+    public void makeBabies(BabiesStage stage) throws InterruptedException {
         System.out.println("7. A little wonder");
         Thread.sleep(2000);
-        observer.onHavingKids(kidsQuantity, gender);
-        if (kidsQuantity >= BABIES) {
+        observer.onHavingKids(stage.kidsQuantity, stage.gender);
+        if (stage.kidsQuantity >= BABIES) {
             System.out.println("Father: I hope my financial support will be enough...");
         }
         else {
             System.out.println("Father: You're my little wonder!");
         }
         Thread.sleep(1500);
-        if (gender) {
+        if (stage.gender) {
             System.out.println("Father: The more boys, the better!");
         }
         else {
@@ -251,25 +281,35 @@ public class Human {
         Thread.sleep(500);
     }
 
-    public void studySomeJava(double cost, boolean isOnlineCourse, int amountOfMonthsToBecomeJunior) throws InterruptedException {
+    public static class BabiesStage {
+        int kidsQuantity;
+        boolean gender;
+
+        public BabiesStage(int kidsQuantity, boolean gender) {
+            this.kidsQuantity = kidsQuantity;
+            this.gender = gender;
+        }
+    }
+
+    public void studySomeJava(JavaLearnStage stage) throws InterruptedException {
         System.out.println("8. A new profession, Java related profession");
         Thread.sleep(2000);
-        observer.onStudyingJava(cost, isOnlineCourse, amountOfMonthsToBecomeJunior);
-        if (cost > CHEAP) {
+        observer.onStudyingJava(stage.cost, stage.isOnlineCourse, stage.amountOfMonthsToBecomeJunior);
+        if (stage.cost > CHEAP) {
             System.out.println("Future developer: Courses are rather expensive nowadays, but I think it's worth it!");
         }
         else {
             System.out.println("Future developer: The course isn't as expensive as it could be so I'll try it out.");
         }
         Thread.sleep(1500);
-        if (isOnlineCourse) {
+        if (stage.isOnlineCourse) {
             System.out.println("Future developer: Yeah, not a traditional one but it'll save our time!");
         }
         else {
             System.out.println("Future developer: Good old courses, nothing special but it think it's good enough.");
         }
         Thread.sleep(1500);
-        if (amountOfMonthsToBecomeJunior < MUCH_TIME) {
+        if (stage.amountOfMonthsToBecomeJunior < MUCH_TIME) {
             System.out.println("Future developer: Yes! I've finally done it!");
         }
         else {
@@ -278,32 +318,44 @@ public class Human {
         Thread.sleep(500);
     }
 
-    public void runStartUp(boolean isDivorced, boolean isSuccessful, String lineOfBusiness, String companyName) throws InterruptedException {
+    public static class JavaLearnStage {
+        double cost;
+        boolean isOnlineCourse;
+        int amountOfMonthsToBecomeJunior;
+
+        public JavaLearnStage(double cost, boolean isOnlineCourse, int amountOfMonthsToBecomeJunior) {
+            this.cost = cost;
+            this.isOnlineCourse = isOnlineCourse;
+            this.amountOfMonthsToBecomeJunior = amountOfMonthsToBecomeJunior;
+        }
+    }
+
+    public void runStartUp(StartUpStage stage) throws InterruptedException {
         System.out.println("9. StartUp time!");
         Thread.sleep(2000);
-        observer.onRunningStartUp(isDivorced, isSuccessful, lineOfBusiness, companyName);
-        if (isDivorced) {
+        observer.onRunningStartUp(stage.isDivorced, stage.isSuccessful, stage.lineOfBusiness, stage.companyName);
+        if (stage.isDivorced) {
             System.out.println("Developer: Everything ends... But I have to move forward.");
         }
         else {
             System.out.println("Developer: It was close, but I believed that she will stay with me.");
         }
         Thread.sleep(1500);
-        if (isSuccessful) {
+        if (stage.isSuccessful) {
             System.out.println("Developer: And my business thrives!");
         }
         else {
             System.out.println("Developer: I need to change direction...");
         }
         Thread.sleep(1500);
-        if (lineOfBusiness.equals("Healthcare")) {
+        if (stage.lineOfBusiness.equals("Healthcare")) {
             System.out.println("Developer: I've always wanted to help people be more healthy.");
         }
         else {
             System.out.println("Developer: It's just a business.");
         }
         Thread.sleep(1500);
-        if (companyName.equals("PositiveTech")) {
+        if (stage.companyName.equals("PositiveTech")) {
             System.out.println("Developer: Company name reflects my mood last three years.");
         }
         else {
@@ -312,25 +364,39 @@ public class Human {
         Thread.sleep(500);
     }
 
-    public void sellStartUp(double price, boolean isEnoughMoneyToRetire, boolean isHappyWithSpentEffortsAndTime) throws InterruptedException {
+    public static class StartUpStage {
+        boolean isDivorced;
+        boolean isSuccessful;
+        String lineOfBusiness;
+        String companyName;
+
+        public StartUpStage(boolean isDivorced, boolean isSuccessful, String lineOfBusiness, String companyName) {
+            this.isDivorced = isDivorced;
+            this.isSuccessful = isSuccessful;
+            this.lineOfBusiness = lineOfBusiness;
+            this.companyName = companyName;
+        }
+    }
+
+    public void sellStartUp(SellStartUpStage stage) throws InterruptedException {
         System.out.println("10. StartUp selling...");
         Thread.sleep(2000);
-        observer.onSellingStartUp(price, isEnoughMoneyToRetire, isHappyWithSpentEffortsAndTime);
-        if (price > HIGH_PRICE) {
+        observer.onSellingStartUp(stage.price, stage.isEnoughMoneyToRetire, stage.isHappyWithSpentEffortsAndTime);
+        if (stage.price > HIGH_PRICE) {
             System.out.println("CTO: That's really good money for this kind of company.");
         }
         else {
             System.out.println("CTO: It was a good deal, I hope so...");
         }
         Thread.sleep(1500);
-        if (isEnoughMoneyToRetire) {
+        if (stage.isEnoughMoneyToRetire) {
             System.out.println("CTO: Woah, I've worked enough for my country, now it's her time to work for me!");
         }
         else {
             System.out.println("CTO: It isn't hard to find a part time job with my experience.");
         }
         Thread.sleep(1500);
-        if (isHappyWithSpentEffortsAndTime) {
+        if (stage.isHappyWithSpentEffortsAndTime) {
             System.out.println("CTO: And it was certainly the best years of my career!");
         }
         else {
@@ -339,37 +405,63 @@ public class Human {
         Thread.sleep(500);
     }
 
-    public void die(boolean isWifeCame, boolean isDiedFromAge, String placeWhereHeDied, int amountOfPeopleAtFuneral) throws InterruptedException {
+    public static class SellStartUpStage {
+        double price;
+        boolean isEnoughMoneyToRetire;
+        boolean isHappyWithSpentEffortsAndTime;
+
+        public SellStartUpStage(double price, boolean isEnoughMoneyToRetire, boolean isHappyWithSpentEffortsAndTime) {
+            this.price = price;
+            this.isEnoughMoneyToRetire = isEnoughMoneyToRetire;
+            this.isHappyWithSpentEffortsAndTime = isHappyWithSpentEffortsAndTime;
+        }
+    }
+
+    public void die(DeathStage stage) throws InterruptedException {
         System.out.println("11. ...Death");
         Thread.sleep(2000);
-        observer.onDeath(isWifeCame, isDiedFromAge, placeWhereHeDied, amountOfPeopleAtFuneral);
-        if (isWifeCame) {
+        observer.onDeath(stage.isWifeCame, stage.isDiedFromAge, stage.placeWhereHeDied, stage.amountOfPeopleAtFuneral);
+        if (stage.isWifeCame) {
             System.out.println("Ghost!: Are you ignoring me as always? Hey!?");
         }
         else {
             System.out.println("Ghost!: So much people, why do they came?");
         }
         Thread.sleep(1500);
-        if (isDiedFromAge) {
+        if (stage.isDiedFromAge) {
             System.out.println("Ghost!: Why they are so silent?");
         }
         else {
             System.out.println("Ghost!: So many people and so much noise, but why?");
         }
         Thread.sleep(1500);
-        if (placeWhereHeDied.equals("New York")) {
+        if (stage.placeWhereHeDied.equals("New York")) {
             System.out.println("Ghost!: Looks like my home... And wait IT'S ME?");
         }
         else {
             System.out.println("Ghost!: Hmm.. This black vase looks familiar, why does my mom hugs it?");
         }
         Thread.sleep(1500);
-        if (amountOfPeopleAtFuneral >= A_LOT_OF_PEOPLE) {
+        if (stage.amountOfPeopleAtFuneral >= A_LOT_OF_PEOPLE) {
             System.out.println("Ghost!: Oh, at least they came to say goodbye.");
         }
         else {
             System.out.println("Ghost!: And so little people came.. Meh");
         }
         Thread.sleep(500);
+    }
+
+    public static class DeathStage {
+        boolean isWifeCame;
+        boolean isDiedFromAge;
+        String placeWhereHeDied;
+        int amountOfPeopleAtFuneral;
+
+        public DeathStage(boolean isWifeCame, boolean isDiedFromAge, String placeWhereHeDied, int amountOfPeopleAtFuneral) {
+            this.isWifeCame = isWifeCame;
+            this.isDiedFromAge = isDiedFromAge;
+            this.placeWhereHeDied = placeWhereHeDied;
+            this.amountOfPeopleAtFuneral = amountOfPeopleAtFuneral;
+        }
     }
 }
