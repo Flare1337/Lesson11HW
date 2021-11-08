@@ -9,14 +9,8 @@ public class DelegatingStudentPrinter implements IStudentPrinter {
 
     @Override
     public void print(Student student) {
-        IStudentPrinter studentPrinter = new IStudentPrinter() {
-            @Override
-            public void print(Student student) {
-                for (IStudentPrinter printer : printers) {
-                    printer.print(student);
-                }
-            }
-        };
-        studentPrinter.print(student);
+        for (IStudentPrinter printer : printers) {
+            printer.print(student);
+        }
     }
 }

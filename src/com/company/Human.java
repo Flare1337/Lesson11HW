@@ -106,7 +106,7 @@ public class Human {
     public void goToKindergarten(KindergartenParams params) throws InterruptedException {
         System.out.println("2. A kindergarten moment");
         Thread.sleep(2000);
-        observer.onKindergarten(params.isLocalEstablishment, params.isLuxuriousKindergarten, params.isChildHappy);
+        observer.onKindergarten(params);
         Thread.sleep(1000);
         if (params.isLuxuriousKindergarten) {
             System.out.println("Kid: Mommy I want this, and this one too!");
@@ -132,8 +132,7 @@ public class Human {
     public void beginSchoolStage(SchoolStage schoolStage) throws InterruptedException {
         System.out.println("3. School ");
         Thread.sleep(2000);
-        observer.onSchool(schoolStage.amountOfMinutesToGetToSchool, schoolStage.isSecondarySchoolOfMathematics,
-                schoolStage.averageMark);
+        observer.onSchool(schoolStage);
         if (schoolStage.averageMark > 3) {
             System.out.println("Teen: It wasn't hard, huh");
         }
@@ -158,8 +157,7 @@ public class Human {
     public void enrollUniversity(UniversityStage universityStage) throws InterruptedException {
         System.out.println("4. University stage");
         Thread.sleep(2000);
-        observer.onUniversity(universityStage.establishmentName, universityStage.specialization,
-                universityStage.isFreeEducation, universityStage.isWorkWhileStudy);
+        observer.onUniversity(universityStage);
         if (universityStage.isFreeEducation) {
             System.out.println("Student: I was preparing hard to get free education");
         }
@@ -186,7 +184,7 @@ public class Human {
     public void findJob(JobStage jobStage) throws InterruptedException {
         System.out.println("5. First job");
         Thread.sleep(2000);
-        observer.onFindingJob(jobStage.salary, jobStage.amountOfInterviews, jobStage.timeInMinutesFromWorkplace);
+        observer.onFindingJob(jobStage);
         if (jobStage.salary > HIGH_SALARY) {
             System.out.println("Employee: Oho, study at the university wasn't in vain! The position is a fire");
         }
@@ -225,7 +223,7 @@ public class Human {
     public void findTheOne(FindingWifeStage stage) throws InterruptedException {
         System.out.println("6. The beloved one");
         Thread.sleep(2000);
-        observer.onSeekingForWife(stage.isMotherLikes, stage.isRich, stage.herAge);
+        observer.onSeekingForWife(stage);
         if (stage.isMotherLikes) {
             System.out.println("Future husband: As I said before, she's the one!");
         }
@@ -264,7 +262,7 @@ public class Human {
     public void makeBabies(BabiesStage stage) throws InterruptedException {
         System.out.println("7. A little wonder");
         Thread.sleep(2000);
-        observer.onHavingKids(stage.kidsQuantity, stage.gender);
+        observer.onHavingKids(stage);
         if (stage.kidsQuantity >= BABIES) {
             System.out.println("Father: I hope my financial support will be enough...");
         }
@@ -294,7 +292,7 @@ public class Human {
     public void studySomeJava(JavaLearnStage stage) throws InterruptedException {
         System.out.println("8. A new profession, Java related profession");
         Thread.sleep(2000);
-        observer.onStudyingJava(stage.cost, stage.isOnlineCourse, stage.amountOfMonthsToBecomeJunior);
+        observer.onStudyingJava(stage);
         if (stage.cost > CHEAP) {
             System.out.println("Future developer: Courses are rather expensive nowadays, but I think it's worth it!");
         }
@@ -333,7 +331,7 @@ public class Human {
     public void runStartUp(StartUpStage stage) throws InterruptedException {
         System.out.println("9. StartUp time!");
         Thread.sleep(2000);
-        observer.onRunningStartUp(stage.isDivorced, stage.isSuccessful, stage.lineOfBusiness, stage.companyName);
+        observer.onRunningStartUp(stage);
         if (stage.isDivorced) {
             System.out.println("Developer: Everything ends... But I have to move forward.");
         }
@@ -381,7 +379,7 @@ public class Human {
     public void sellStartUp(SellStartUpStage stage) throws InterruptedException {
         System.out.println("10. StartUp selling...");
         Thread.sleep(2000);
-        observer.onSellingStartUp(stage.price, stage.isEnoughMoneyToRetire, stage.isHappyWithSpentEffortsAndTime);
+        observer.onSellingStartUp(stage);
         if (stage.price > HIGH_PRICE) {
             System.out.println("CTO: That's really good money for this kind of company.");
         }
@@ -420,7 +418,7 @@ public class Human {
     public void die(DeathStage stage) throws InterruptedException {
         System.out.println("11. ...Death");
         Thread.sleep(2000);
-        observer.onDeath(stage.isWifeCame, stage.isDiedFromAge, stage.placeWhereHeDied, stage.amountOfPeopleAtFuneral);
+        observer.onDeath(stage);
         if (stage.isWifeCame) {
             System.out.println("Ghost!: Are you ignoring me as always? Hey!?");
         }

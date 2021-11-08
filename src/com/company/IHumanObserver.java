@@ -9,46 +9,23 @@ public interface IHumanObserver {
                  int height,
                  boolean location, int ageInYears) throws InterruptedException;
 
-    void onKindergarten(boolean isLocalEstablishment,
-                        boolean isLuxuriousKindergarten,
-                        boolean isChildHappy) throws InterruptedException;
+    void onKindergarten(Human.KindergartenParams params) throws InterruptedException;
 
-    void onSchool(int amountOfMinutesToGetToSchool,
-                  boolean isSecondarySchoolOfMathematics,
-                  int averageMark) throws InterruptedException;
+    void onSchool(Human.SchoolStage params) throws InterruptedException;
 
-    void onUniversity(String establishmentName,
-                      String specialization,
-                      boolean isFreeEducation,
-                      boolean isWorkWhileStudy) throws InterruptedException;
+    void onUniversity(Human.UniversityStage params) throws InterruptedException;
 
-    void onFindingJob(double salary,
-                      int amountOfInterviews,
-                      int timeInMinutesFromWorkplace) throws InterruptedException;
+    void onFindingJob(Human.JobStage params) throws InterruptedException;
 
-    void onSeekingForWife(boolean isMotherLikes,
-                          boolean isRich,
-                          int herAge) throws InterruptedException;
+    void onSeekingForWife(Human.FindingWifeStage params) throws InterruptedException;
 
-    void onHavingKids(int kidsQuantity,
-                      boolean gender) throws InterruptedException;
+    void onHavingKids(Human.BabiesStage params) throws InterruptedException;
 
-    void onStudyingJava(double cost,
-                        boolean isOnlineCourse,
-                        int amountOfMonthsToBecomeJunior) throws InterruptedException;
+    void onStudyingJava(Human.JavaLearnStage params) throws InterruptedException;
 
-    void onRunningStartUp(boolean isDivorced,
-                          boolean isSuccessful,
-                          String lineOfBusiness,
-                          String companyName) throws InterruptedException;
+    void onRunningStartUp(Human.StartUpStage params) throws InterruptedException;
 
-    void onSellingStartUp(double price,
-                          boolean isEnoughMoneyToRetire,
-                          boolean isHappyWithSpentEffortsAndTime) throws InterruptedException;
+    void onSellingStartUp(Human.SellStartUpStage params) throws InterruptedException;
 
-    void onDeath(boolean isWifeCame,
-                 boolean isDiedFromAge,
-                 String placeWhereHeDied,
-                 int amountOfPeopleAtFuneral
-                 ) throws InterruptedException;
+    void onDeath(Human.DeathStage params) throws InterruptedException;
 }

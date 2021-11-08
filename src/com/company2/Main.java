@@ -27,9 +27,8 @@ public class Main {
         System.out.println(result5);
         var result6 = Student.anonymousComparatorThree().compare(student1, student2);
         System.out.println(result6);
-
-
     }
+
     private void processTheTaskData() {
         Student student = new Student("Josh",12, new BigDecimal("23.5"));
         Student student1 = (new Student("Mary", 21 , new BigDecimal("3.14")));
@@ -50,6 +49,68 @@ public class Main {
 
         IStudentPrinter studentStringConverter = new DelegatingStudentPrinter(printers);
         studentStringConverter.print(student);
+
+        IStudentStringConverter studentStringConverterOne = new IStudentStringConverter() {
+            @Override
+            public String convert(Student student) {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("{").append("\n");
+                stringBuilder.append("\t").append("\"name\":").append("\"" + student.getName() + "\",").append("\n");
+                stringBuilder.append("\t").append("\"age\":").append(student.getAge() + ",").append("\n");
+                stringBuilder.append("\t").append("\"salary\":").append(student.getSalary()).append("\n");
+                stringBuilder.append("}");
+                return stringBuilder.toString();
+            }
+        };
+        IStudentStringConverter studentStringConverterTwo = new IStudentStringConverter() {
+            @Override
+            public String convert(Student student) {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("name=").append(student.getName()).append("\n");
+                stringBuilder.append("age=").append(student.getAge()).append("\n");
+                stringBuilder.append("salary=").append(student.getSalary()).append("\n");
+                return stringBuilder.toString();
+            }
+        };
+        IStudentStringConverter studentStringConverterThree = new IStudentStringConverter() {
+            @Override
+            public String convert(Student student) {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("<student>").append("\n");
+                stringBuilder.append("\t").append("<name>").append(student.getName()).append("</name>\n");
+                stringBuilder.append("\t").append("<age>").append(student.getAge()).append("</age>\n");
+                stringBuilder.append("\t").append("<salary>").append(student.getSalary()).append("</salary>\n");
+                stringBuilder.append("</student>");
+                return stringBuilder.toString();
+            }
+        };
+        IStudentPrinter studentPrinterPrint = new IStudentPrinter() {
+            @Override
+            public void print(Student student) {
+                System.out.println(student.toString());
+            }
+        };
+        IStudentPrinter studentPrinterNoAction = new IStudentPrinter() {
+            @Override
+            public void print(Student student) {
+                student.toString();
+            }
+        };
+        IStudentPrinter studentPrinterDelegate = new IStudentPrinter() {
+            @Override
+            public void print(Student student) {
+                for (IStudentPrinter printer : printers) {
+                    printer.print(student);
+                }
+            }
+        };
+        studentStringConverterOne.convert(student);
+        studentStringConverterTwo.convert(student);
+        studentStringConverterThree.convert(student);
+
+        studentPrinterPrint.print(student);
+        studentPrinterNoAction.print(student);
+        studentPrinterDelegate.print(student);
     }
 
     private IStudentStringConverter randomConverter() {
