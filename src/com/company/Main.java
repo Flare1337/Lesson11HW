@@ -6,12 +6,11 @@ import java.time.LocalDateTime;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         RandomGenerator rg = new RandomGenerator();
-        Mother mother = new Mother();
         Human human = new Human(LocalDateTime.now(), true, rg.getRandomBabyWeight(),
                                 rg.getRandomHeight(), rg.getRandomBoolean(), 0);
         IHumanObserver observer = new IHumanObserver() {
-            public void onBirth(LocalDateTime birthTime, boolean gender, float weight, int height, boolean location, int ageInYears) throws InterruptedException {
-                if (gender) {
+            public void onBirth(Human human) throws InterruptedException {
+                if (human.isGender()) {
                     System.out.println("Mother: My boy!");
                 }
                 else {
@@ -19,7 +18,7 @@ public class Main {
                 }
 
                 Thread.sleep(1000);
-                if (weight > 5) {
+                if (human.getWeight() > 5) {
                     System.out.println("Mother: Oh, you'll be the strong one.");
                 }
                 else {
@@ -27,7 +26,7 @@ public class Main {
                 }
 
                 Thread.sleep(1500);
-                if (location) {
+                if (human.getLocation()) {
                     System.out.println("Mother: I'm so glad that we managed to get back home in time.");
                 }
                 else {
@@ -279,7 +278,6 @@ public class Main {
             }
         };
         human.setObserver(observer);
-        human.startLife(human.getBirthTime(), human.isGender(), human.getWeight(),
-                          human.getHeight(), human.getLocation(), human.getAgeInYears());
+        human.startLife(human);
     }
 }

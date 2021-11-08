@@ -3,11 +3,7 @@ package com.company;
 import java.time.LocalDateTime;
 
 public interface IHumanObserver {
-    void onBirth(LocalDateTime birthTime,
-                 boolean gender,
-                 float weight,
-                 int height,
-                 boolean location, int ageInYears) throws InterruptedException;
+    void onBirth(Human params) throws InterruptedException;
 
     void onKindergarten(Human.KindergartenParams params) throws InterruptedException;
 

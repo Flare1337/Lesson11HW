@@ -83,10 +83,10 @@ public class Human {
         this.observer = observer;
     }
 
-    public void startLife(LocalDateTime birthTime, boolean gender, float weight, int height, boolean location, int ageInYears) throws InterruptedException {
+    public void startLife(Human human) throws InterruptedException {
         System.out.println("1. Start of the human's life");
         Thread.sleep(1000);
-        observer.onBirth(birthTime,gender, weight, height, location, ageInYears);
+        observer.onBirth(human);
         System.out.println("*Baby cries*");
         Thread.sleep(500);
         goToKindergarten(new KindergartenParams(rg.getRandomBoolean(), rg.getRandomBoolean(), rg.getRandomBoolean()));

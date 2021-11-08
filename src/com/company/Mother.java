@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 
 public class Mother implements IHumanObserver {
     @Override
-    public void onBirth(LocalDateTime birthTime, boolean gender, float weight, int height, boolean location, int ageInYears) throws InterruptedException {
-        if (gender) {
+    public void onBirth(Human human) throws InterruptedException {
+        if (human.isGender()) {
             System.out.println("Mother: My boy!");
         }
         else {
@@ -13,7 +13,7 @@ public class Mother implements IHumanObserver {
         }
 
         Thread.sleep(1000);
-        if (weight > 5) {
+        if (human.getWeight() > 5) {
             System.out.println("Mother: Oh, you'll be the strong one.");
         }
         else {
@@ -21,7 +21,7 @@ public class Mother implements IHumanObserver {
         }
 
         Thread.sleep(1500);
-        if (location) {
+        if (human.getLocation()) {
             System.out.println("Mother: I'm so glad that we managed to get back home in time.");
         }
         else {
@@ -109,7 +109,7 @@ public class Mother implements IHumanObserver {
             System.out.println("Mother: You have some persuasive talents.");
         }
         else {
-            System.out.println("Mother: Good for start anyway.");
+            System.out.println("Mother: And that's fine for start too.");
         }
         Thread.sleep(1500);
         if (params.timeInMinutesFromWorkplace < Human.A_LOT_INTERVIEWS) {
